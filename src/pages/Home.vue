@@ -9,11 +9,27 @@
 
       <div class="bg-primary-light p-4 rounded">Khối này có nền màu xanh</div>
 
-      <p class="text-body-base font-weight-big">body-base</p>
+      <p class="text-body-base font-weight-big">body-base: {{ name }}</p>
+
+      <button @click="changeName">click</button>
 
     </div>
   </template>
   
   <script setup lang="ts">
+  import { ref } from 'vue'
+  const user = ref({
+    name: 'tung',
+    age: 28
+  })
+
+  let {name, age} = user.value
+
+  const changeName = () => {
+    user.value.name = 'quaynh'
+
+    console.log(name , user.value);
+    
+  }
   // Logic của trang Home ở đây
   </script>

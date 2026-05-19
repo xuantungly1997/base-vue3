@@ -32,6 +32,10 @@
       path: '/dashboard',
     },
     {
+      name: 'Socket.IO',
+      path: '/socket',
+    },
+    {
       name: 'Quản trị hệ thống', // Thằng này là 1 group, không có path
       children: [
         {

@@ -5,6 +5,8 @@ export const useAuthStore = defineStore('auth', () => {
   // Lấy token từ localStorage nếu có
   const token = ref<string | null>(localStorage.getItem('token') || null);
 
+  const userRole = ref<string>('admin')
+
   // Getter kiểm tra xem đã đăng nhập chưa
   const isAuthenticated = computed(() => !!token.value);
 
@@ -31,5 +33,5 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem('token');
   }
 
-  return { token, isAuthenticated, login, logout };
+  return { token, userRole, isAuthenticated, login, logout };
 });

@@ -54,6 +54,7 @@ const currentRouteName = computed(() => {
   // Map path ra tên tiếng Việt
   const path = route.path;
   if (path === '/') return 'Trang chủ';
+  if (path.includes('/socket')) return 'Socket.IO';
   if (path.includes('/dashboard')) return 'Dashboard';
   return 'Quản trị';
 });

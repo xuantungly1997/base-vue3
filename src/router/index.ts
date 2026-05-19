@@ -17,10 +17,26 @@ const routes: Array<RouteRecordRaw> = [
         meta: { requiresAuth: true }
       },
       {
+        path: 'socket',
+        name: 'Socket',
+        component: () => import('@/pages/Socket.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/pages/Dashboard.vue'),
-        meta: { requiresAuth: true }
+        meta: { requiresAuth: true },
+        beforeEnter: (to, from, next) => {
+          const authStore = useAuthStore();
+          // Giả sử store có lưu role của user
+          if (authStore.userRole !== 'admin') {
+            // Nếu không phải ADMIN, đá về trang Dashboard hoặc trang lỗi 403
+            next({ name: 'NotFound', query: { error: 'no_permission' } });
+          } else {
+            next(); // Cho phép vào
+          }
+        }
       },
       // --- CÁC ROUTE MỚI THEO MENU ---
       // {
